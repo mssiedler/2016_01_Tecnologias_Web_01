@@ -10,7 +10,7 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
-        <form action="cadastro-ok.php" method="post">
+        <form action="cadastro-ok.php" method="get">
             <label>Nome:</label>
             <input type="text" name="txtNome" />
             <br/>
