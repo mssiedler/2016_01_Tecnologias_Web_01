@@ -1,16 +1,6 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Gerenciamento de Disciplinas</title>
-        <link rel="stylesheet" href="../estilo.css" />
-    </head>
-    <body>
-        <h1>Sistema de Controle de Disciplinas</h1>
-        <header class="centro">Usuário: xxxxx - <a href="#">Sair</a>
-            <hr />
-            <nav><a href="../aluno">Aluno</a> - <a href="../professor">Professores</a> - <a href="../disciplina">Disciplina</a></nav>
-        </header>
+<?php
+    include "../cabecalho.php";
+?>
 
 
         <div>
@@ -38,7 +28,7 @@
                             <td>99</td>
                             <td>SIM</td>
                             <td><a href="upd.php">Editar</a>
-                                <a href="del-ok.php">Excluir</a>
+                                <a href="del-ok.php?matricula=1">Excluir</a>
                             </td>
 
                         </tr>
@@ -48,7 +38,7 @@
                             <td>99</td>
                             <td>SIM</td>
                              <td><a href="upd.php">Editar</a>
-                                <a href="del-ok.php">Excluir</a>
+                                <a href="del-ok.php?matricula=2">Excluir</a>
                             </td>
 
                         </tr>
@@ -58,7 +48,7 @@
                             <td>99</td>
                             <td>SIM</td>
                              <td><a href="upd.php">Editar</a>
-                                <a href="del-ok.php">Excluir</a>
+                                <a href="del-ok.php?matricula=3">Excluir</a>
                             </td>
 
                         </tr>

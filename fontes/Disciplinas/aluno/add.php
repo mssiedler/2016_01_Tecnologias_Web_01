@@ -1,17 +1,6 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Gerenciamento de Disciplinas</title>
-        <link rel="stylesheet" href="../estilo.css" />
-    </head>
-    <body>
-        <h1>Sistema de Controle de Disciplinas</h1>
-        <header class="centro">Usuário: xxxxx - <a href="#">Sair</a>
-            <hr />
-            <nav><a href="../aluno">Aluno</a> - <a href="../professor">Professores</a> - <a href="../disciplina">Disciplina</a></nav>
-        </header>
-        
+<?php
+    include "../cabecalho.php";
+?>
         
         
         <div>
@@ -20,7 +9,7 @@
             <div>
 
                 <form action="add-ok.php" method="post">
-                    <label>Nome:</label><input type="text"  /><br />
+                    <label>Nome:</label><input type="text" name="txtNome" /><br />
                     <label>Matrícula</label><input type="text" 
                                                    /><br />
                     <label>Num. Disciplinas</label><input type="text" /><br />
