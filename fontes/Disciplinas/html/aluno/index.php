@@ -1,5 +1,12 @@
 <?php
     include "../cabecalho.php";
+    
+    require '../../dao/AlunoDAO.class.php';
+    
+     $dao = new AlunoDAO();
+     $lista = $dao->listar();
+     
+     
 ?>
 
 
@@ -22,36 +29,22 @@
                             <th>Matriculado</th>
                             <th>Ações</th>
                         </tr>
+                        <?php
+                        foreach ($lista as $obj) {
+                        ?>
                         <tr>
-                            <td>1</td>
-                            <td>xxxxxx</td>
-                            <td>99</td>
-                            <td>SIM</td>
+                            <td><?php echo $obj->matricula?></td>
+                            <td><?php echo $obj->nome?></td>
+                            <td><?php echo $obj->disciplinas?></td>
+                            <td><?php echo $obj->ativo?></td>
                             <td><a href="upd.php">Editar</a>
                                 <a href="del-ok.php?matricula=1">Excluir</a>
                             </td>
 
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>xxxxxx</td>
-                            <td>99</td>
-                            <td>SIM</td>
-                             <td><a href="upd.php">Editar</a>
-                                <a href="del-ok.php?matricula=2">Excluir</a>
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>xxxxxx</td>
-                            <td>99</td>
-                            <td>SIM</td>
-                             <td><a href="upd.php">Editar</a>
-                                <a href="del-ok.php?matricula=3">Excluir</a>
-                            </td>
-
-                        </tr>
+                       <?php
+                        }
+                        ?>
                     </table>
 
               

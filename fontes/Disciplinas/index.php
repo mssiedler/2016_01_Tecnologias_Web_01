@@ -10,6 +10,6 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
-        <a href="home/">Sistema</a>
+        <a href="html/home/">Sistema</a>
     </body>
 </html>
