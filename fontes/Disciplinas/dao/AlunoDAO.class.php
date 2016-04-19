@@ -51,9 +51,57 @@ class AlunoDAO {
         $sql = "INSERT INTO aluno (matricula, disciplinas,"
                 . "nome,ativo) VALUES (:matricula, :disciplinas, :nome, :ativo)";
         $retorno = $this->pdo->prepare($sql);
+        
         $retorno->execute($parametros);
         
         return $retorno->rowCount();
+        
+    }
+    
+    public function excluir($chavePrimaria)
+    {
+        $sql = "DELETE FROM aluno where matricula = :matricula";
+        $retorno = $this->pdo->prepare($sql);
+        $retorno->bindParam(":matricula", $chavePrimaria);
+        $retorno->execute();
+        
+        return $retorno->rowCount();
+    }
+    
+    public function alterar($obj)
+    {
+        $parametros = array(
+          ":matricula" => $obj->matricula,
+          ":disciplinas" => $obj->disciplinas,
+          ":nome" => $obj->nome,
+          ":ativo" => $obj->ativo
+        );
+        
+        $sql = "UPDATE aluno SET "
+                . "disciplinas=:disciplinas, "
+                . "nome=:nome, "
+                . "ativo=:ativo"
+                . " WHERE matricula=:matricula";
+        $retorno = $this->pdo->prepare($sql);
+        $retorno->execute($parametros);
+        
+        return $retorno->rowCount();
+    }
+    
+    public function buscarPorChavePrimaria($chavePrimaria)
+    {
+        $sql = "SELECT * FROM aluno WHERE matricula=:matricula";
+        $retorno = $this->pdo->prepare($sql);
+        $retorno->bindParam(":matricula", $chavePrimaria);
+        $retorno->execute();
+        if($obj = $retorno->fetchObject())
+        {
+            return $obj;
+        }
+        else
+        {
+            return null;
+        }
         
     }
     

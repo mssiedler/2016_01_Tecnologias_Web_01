@@ -37,8 +37,8 @@
                             <td><?php echo $obj->nome?></td>
                             <td><?php echo $obj->disciplinas?></td>
                             <td><?php echo $obj->ativo?></td>
-                            <td><a href="upd.php">Editar</a>
-                                <a href="del-ok.php?matricula=1">Excluir</a>
+                            <td><a href="upd.php?matricula=<?php echo $obj->matricula?>">Editar</a>
+                                <a href="del-ok.php?matricula=<?php echo $obj->matricula?>">Excluir</a>
                             </td>
 
                         </tr>

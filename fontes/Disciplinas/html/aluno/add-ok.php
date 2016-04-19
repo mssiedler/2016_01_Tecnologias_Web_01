@@ -15,7 +15,7 @@ if(isset($_POST["chkAtivo"]))
 else
     $aluno->ativo = "f";
 
-var_dump($aluno);
+
 //Chamo a DAO e mando inserir
 $dao = new AlunoDAO();
 $retorno = $dao->inserir($aluno);
