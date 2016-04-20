@@ -39,11 +39,11 @@
 
                 <form action="upd-ok.php" method="post">
                     <label>Matrícula</label><input type="text" readonly
-                                                   value="<?php echo $obj->matricula?>"/><br />
-                    <label>Nome:</label><input type="text" value="<?php echo $obj->nome?>"  /><br />
+                                                  name="txtMatricula" value="<?php echo $obj->matricula?>"/><br />
+                    <label>Nome:</label><input type="text" name="txtNome" value="<?php echo $obj->nome?>"  /><br />
                     
-                    <label>Num. Disciplinas</label><input type="text" value="<?php echo $obj->disciplinas?>" /><br />
-                    <label>Ativo</label><input type="checkbox" <?php echo $checked?>/><br />
+                    <label>Num. Disciplinas</label><input type="text" name="txtDisciplinas" value="<?php echo $obj->disciplinas?>" /><br />
+                    <label>Ativo</label><input type="checkbox" name="chkAtivo" <?php echo $checked?>/><br />
                     <input type="reset" value="Limpar" />
                     <input type="submit" value="Salvar" />
                 </form>

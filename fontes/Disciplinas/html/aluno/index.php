@@ -1,4 +1,6 @@
 <?php
+    include "../config.php";
+
     include "../cabecalho.php";
     
     require '../../dao/AlunoDAO.class.php';
