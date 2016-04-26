@@ -6,7 +6,21 @@ if(!isset($_GET["matricula"]))
 }
 
 $matricula = $_GET["matricula"];
-echo $matricula;
+
+require "../../dao/AlunoDAO.class.php";
+
+$dao = new AlunoDAO();
+
+$retorno = $dao->excluir($matricula);
+ 
+if($retorno > 0)
+{
+  $msg = "Registro excluído com sucesso" ; 
+}
+else{
+  $msg = "Não foi possível excluir o registro. Verifique dependências";  
+}
+    
 
 
 include "../cabecalho.php";
@@ -19,7 +33,7 @@ include "../cabecalho.php";
 
             <div>
 
-                <h3>Registro excluído com sucesso</h3>
+                <h3><?php echo $msg?></h3>
                 <div>
                     <a href="index.php">Voltar</a>
                 </div>

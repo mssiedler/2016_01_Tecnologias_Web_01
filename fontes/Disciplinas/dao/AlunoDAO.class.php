@@ -23,12 +23,20 @@ class AlunoDAO {
         $this->pdo = $conexao->getPDO();
     }
     //Listar
-    public function listar()
+    public function listar($filtro=null,$ordenarPor=null)
     {
-        //lista de alunos
+        
+        $parametros = array();
+        $sql = "SELECT * FROM aluno ";
+        if(isset($filtro))
+        {
+            $sql .= " WHERE nome ilike :filtro or matricula ilike :filtro";
+            $parametros[":filtro"] = "%".$filtro."%";
+        }
         $lista = array();
-        $query = $this->pdo->prepare("SELECT * FROM aluno");
-        $query->execute();
+        $query = $this->pdo->prepare($sql);
+        
+        $query->execute($parametros);
         //percorrer meus registros
         //tratando-os como objeto
         while ($obj = $query->fetchObject()) {

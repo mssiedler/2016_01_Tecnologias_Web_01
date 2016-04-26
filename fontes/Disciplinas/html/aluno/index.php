@@ -6,7 +6,15 @@
     require '../../dao/AlunoDAO.class.php';
     
      $dao = new AlunoDAO();
-     $lista = $dao->listar();
+     if(isset($_POST["txtFiltro"]) && $_POST["txtFiltro"]!="")
+     {
+        $lista = $dao->listar($_POST["txtFiltro"]); 
+     }
+     else
+     {
+         $lista = $dao->listar(); 
+     }
+     
      
      
 ?>
@@ -18,8 +26,8 @@
             <div>
                 +<a href="add.php">Novo</a>
                 <div>
-                    <form>
-                        <input type="text" />
+                    <form method="post">
+                        <input type="text" name="txtFiltro" />
                         <input type="submit" value="Pesquisar"/><br />
                     </form>
                 </div>
