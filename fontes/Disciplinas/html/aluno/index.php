@@ -6,7 +6,7 @@
     require '../../dao/AlunoDAO.class.php';
     
      $dao = new AlunoDAO();
-     if(isset($_POST["txtFiltro"]) && $_POST["txtFiltro"]!="")
+     if(isset($_POST["txtFiltro"]))
      {
         $lista = $dao->listar($_POST["txtFiltro"]); 
      }
