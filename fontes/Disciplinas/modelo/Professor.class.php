@@ -1,12 +1,10 @@
 <?php
 
-class Aluno {
+class Professor {
     
-    private $matricula;
-    private $ativo;
-    private $disciplinas;
+    private $siape;
     private $nome;
-
+    
     public function __get($key){
         return $this->$key;
      }
@@ -14,5 +12,4 @@ class Aluno {
     public function __set($key, $value){
         $this->$key = $value;
      }
-
 }

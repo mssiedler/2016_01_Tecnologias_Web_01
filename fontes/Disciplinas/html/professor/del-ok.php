@@ -1,16 +1,16 @@
 <?php
-   if(!isset($_GET["matricula"]))
+    if(!isset($_GET["siape"]))
     {
         header("location:index.php");
     }
 
-    $matricula = $_GET["matricula"];
+    $siape = $_GET["siape"];
     
-    require '../../dao/AlunoDAO.class.php';
+    require '../../dao/ProfessorDAO.class.php';
     
-    $dao = new AlunoDAO();
+    $dao = new ProfessorDAO();
     
-    $retorno = $dao->excluir($matricula);
+    $retorno = $dao->excluir($siape);
     
     if($retorno > 0)
     {
@@ -24,7 +24,7 @@
     include "../cabecalho.php";
 ?>
         <div>
-            <h1 class="centro">Exclusão de Alunos</h1>
+            <h1 class="centro">Exclusão de Professores</h1>
             <div>
                 <h3><?php echo $msg; ?></h3>
                 <div>

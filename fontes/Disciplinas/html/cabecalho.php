@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
     <head>
         <meta charset="UTF-8">
@@ -10,6 +9,5 @@
         <h1>Sistema de Controle de Disciplinas</h1>
         <header class="centro">Usuário: xxxxx - <a href="#">Sair</a>
             <hr />
-            <nav>
-                <a href="../curso">Curso</a> - <a href="../aluno">Aluno</a> - <a href="../professor">Professores</a> - <a href="../disciplina">Disciplina</a></nav>
+            <nav><a href="../aluno">Aluno</a> - <a href="../curso">Curso</a> - <a href="../disciplina">Disciplina</a> - <a href="../professor">Professores</a></nav>
         </header>

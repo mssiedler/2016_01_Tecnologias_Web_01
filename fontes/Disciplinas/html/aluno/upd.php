@@ -1,5 +1,5 @@
 <?php
-    //se não veio a matrícula volta pra lista(index)
+    //Se não veio a matrícula volta para a lista(index)
     if(!isset($_GET["matricula"]))
     {
         header("location: index.php");
@@ -11,7 +11,7 @@
     $matricula = $_GET["matricula"];
     $dao = new AlunoDAO();
     $obj = $dao->buscarPorChavePrimaria($matricula);
-    //se o aluno nao for encontrado, volta pra index
+    //Se o aluno não for encontrado volta para index
     if($obj == null)
     {
         header("location: index.php");
@@ -19,41 +19,28 @@
     
     if($obj->ativo)
     {
-        $checked= "checked";
+        $checked = "checked";
     }
     else
     {
-        $checked= "";
+        $checked = "";
     }
-
-    include "../cabecalho.php";
     
+    include "../cabecalho.php";
 ?>
-        
-        
-        
         <div>
             <h1 class="centro">Alteração de Alunos</h1>
-
             <div>
-
                 <form action="upd-ok.php" method="post">
-                    <label>Matrícula</label><input type="text" readonly
-                                                  name="txtMatricula" value="<?php echo $obj->matricula?>"/><br />
-                    <label>Nome:</label><input type="text" name="txtNome" value="<?php echo $obj->nome?>"  /><br />
-                    
-                    <label>Num. Disciplinas</label><input type="text" name="txtDisciplinas" value="<?php echo $obj->disciplinas?>" /><br />
-                    <label>Ativo</label><input type="checkbox" name="chkAtivo" <?php echo $checked?>/><br />
+                    <label>Matrícula</label><input type="text" readonly value="<?php echo $obj->matricula ?>" name="txtMatricula"/><br />
+                    <label>Nome:</label><input type="text" value="<?php echo $obj->nome ?>"  name="txtNome"/><br />
+                    <label>Num. Disciplinas</label><input type="text" value="<?php echo $obj->disciplinas ?>" name="txtNumDisciplinas" /><br />
+                    <label>Ativo</label><input type="checkbox" name="rdAtivo" <?php echo $checked ?>/><br />
                     <input type="reset" value="Limpar" />
                     <input type="submit" value="Salvar" />
                 </form>
             </div>
         </div>
-
-
-
     </body>
 </html>
 
-</body>
-</html>

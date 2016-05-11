@@ -1,44 +1,35 @@
 <?php
 require 'Conexao.class.php';
 
-class AlunoDAO {
+class CursoDAO {
     private $pdo;
     
     public function __construct() {
-        //Aqui é feita a conexão com o BD
         $conexao = new Conexao();
         $this->pdo = $conexao->getPDO();
     }
     
-    //Listar
-  //  public function listar()
-  //  {
-        //Lista de alunos
-  //      $lista = array();
-  //      $query = $this->pdo->prepare("SELECT * FROM aluno");
-  //      $query->execute();
-        
-        //Percorrer meus registros, tratando-os como objeto
-  //      while ($obj = $query->fetchObject()){
-  //          $lista[] = $obj;
-  //      }
-        
-  //      return $lista;
-  //  }
+ //   public function listar()
+ //   {
+ //       $lista = array();
+ //       $query = $this->pdo->prepare("SELECT * FROM curso");
+ //       $query->execute();
+ //       
+ //       while ($obj = $query->fetchObject()){
+ //           $lista[] = $obj;
+ //       }
+ //      
+ //       return $lista;
+ //   }
     
     public function inserir($obj)
     {
-        //Mostra os parâmetros
         $parametros = array(
-            ':matricula' => $obj -> matricula,
-            ':disciplinas' => $obj -> disciplinas,
             ':nome' => $obj -> nome,
-            ':ativo' => $obj -> ativo
         );
         
-        //Prepara o sql
-        $sql = "INSERT INTO aluno (matricula, disciplinas, nome, ativo)"
-                . "VALUES (:matricula, :disciplinas, :nome, :ativo)";
+        $sql = "INSERT INTO curso (nome)"
+                . "VALUES (:nome)";
         $retorno = $this->pdo->prepare($sql);
         $retorno->execute($parametros);
         
@@ -47,9 +38,9 @@ class AlunoDAO {
     
     public function excluir($chavePrimaria)
     {
-        $sql = "DELETE FROM aluno WHERE matricula = :matricula";
+        $sql = "DELETE FROM curso WHERE codigo = :codigo";
         $retorno = $this->pdo->prepare($sql);
-        $retorno->bindParam(":matricula", $chavePrimaria);
+        $retorno->bindParam(":codigo", $chavePrimaria);
         $retorno->execute();
         
         return $retorno->rowCount();
@@ -58,17 +49,13 @@ class AlunoDAO {
     public function alterar($obj)
     {
         $parametros = array(
-            ':matricula' => $obj -> matricula,
-            ':disciplinas' => $obj -> disciplinas,
+            ':codigo' => $obj -> codigo,
             ':nome' => $obj -> nome,
-            ':ativo' => $obj -> ativo
         );
         
-        $sql = "UPDATE aluno SET "
-                . "disciplinas = :disciplinas, "
-                . "nome = :nome, "
-                . "ativo = :ativo "
-                . " WHERE matricula = :matricula";
+        $sql = "UPDATE curso SET "
+                . "nome = :nome "
+                . "WHERE codigo = :codigo";
         $retorno = $this->pdo->prepare($sql);
         $retorno->execute($parametros);
         
@@ -77,9 +64,9 @@ class AlunoDAO {
     
     public function buscarPorChavePrimaria($chavePrimaria)
     {
-        $sql=("SELECT * FROM aluno WHERE matricula = :matricula");
+        $sql=("SELECT * FROM curso WHERE codigo = :codigo");
         $retorno = $this->pdo->prepare($sql);
-        $retorno->bindParam(":matricula", $chavePrimaria);
+        $retorno->bindParam(":codigo", $chavePrimaria);
         $retorno->execute();
        
         if($obj=$retorno->fetchObject())
@@ -95,10 +82,10 @@ class AlunoDAO {
     public function listar($filtro=null,$ordenarPor=null)
     {
         $parametros = array();
-        $sql = "SELECT * FROM aluno ";
+        $sql = "SELECT * FROM curso ";
         if(isset($filtro))
         {
-            $sql .= " WHERE nome ilike :filtro OR matricula ilike :filtro";
+            $sql .= " WHERE nome ilike :filtro";
             $parametros[":filtro"] = "%".$filtro."%";
         }
         $lista = array();
