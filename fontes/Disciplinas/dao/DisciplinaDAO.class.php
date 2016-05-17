@@ -107,11 +107,26 @@ WHERE
     public function listar($filtro=null,$ordenarPor=null)
     {
         $parametros = array();
-        $sql = "SELECT * FROM disciplina ";
+        $sql="SELECT 
+	 disciplina.codigo
+	,disciplina.nome
+	,disciplina.semestre
+	,disciplina.codigocurso
+	,disciplina.siapeprofessor
+	,curso.nome AS nomecurso
+	,professor.nome AS nomeprofessor
+FROM
+	disciplina,curso,professor
+WHERE
+	disciplina.codigocurso = curso.codigo 
+	AND disciplina.siapeprofessor = professor.siape 
+        
+        ";
         if(isset($filtro))
         {
-            $sql .= " WHERE codigo = :filtro";
-            $parametros[":filtro"] = $filtro;
+            $sql .= "  AND (professor.nome ilike :filtro "
+                    . "OR disciplina.nome ilike :filtro OR curso.nome ilike :filtro) ";
+            $parametros[":filtro"] = "%".$filtro."%";
         }
         $lista = array();
         $query = $this->pdo->prepare($sql);
@@ -119,8 +134,17 @@ WHERE
         $query->execute($parametros);
         
         //Percorrer meus registros, tratando-os como objeto
+        
         while ($obj = $query->fetchObject()){
-            $lista[] = $obj;
+            $objCompleto = new Disciplina();
+            $objCompleto->codigo = $obj->codigo;
+            $objCompleto->nome = $obj->nome;
+            $objCompleto->semestre = $obj->semestre;
+            $objCompleto->professor->siape = $obj->siapeprofessor;
+            $objCompleto->professor->nome = $obj->nomeprofessor;
+            $objCompleto->curso->codigo = $obj->codigocurso;
+            $objCompleto->curso->nome = $obj->nomecurso;
+            $lista[] = $objCompleto;
         }
         
         return $lista;

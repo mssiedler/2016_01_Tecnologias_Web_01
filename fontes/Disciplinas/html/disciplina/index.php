@@ -30,8 +30,8 @@
                         <th>Código</th>
                         <th>Nome</th>
                         <th>Semestre</th>
-                        <th>Código do curso</th>
-                        <th>Siape do professor</th>
+                        <th>Curso</th>
+                        <th>Professor</th>
                         <th>Ações</th>
                     </tr>
                     <?php
@@ -41,8 +41,8 @@
                         <td><?php echo $obj->codigo ?></td>
                         <td><?php echo $obj->nome ?></td>
                         <td><?php echo $obj->semestre ?></td>
-                        <td><?php echo $obj->codigocurso ?></td>
-                        <td><?php echo $obj->siapeprofessor ?></td>
+                        <td><?php echo $obj->curso->nome ?></td>
+                        <td><?php echo $obj->professor->nome ?></td>
                         <td>
                             <a href="upd.php?codigo=<?php echo $obj->codigo?>">Editar</a>
                             <a href="del-ok.php?codigo=<?php echo $obj->codigo?>">Excluir</a>

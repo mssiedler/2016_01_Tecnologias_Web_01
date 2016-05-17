@@ -8,7 +8,7 @@ require 'dao/DisciplinaDAO.class.php';
 
 $dao = new DisciplinaDAO();
 
-$obj = $dao->buscarPorChavePrimaria(456);
+$obj = $dao->listar();
 print_r($obj);
 
 
