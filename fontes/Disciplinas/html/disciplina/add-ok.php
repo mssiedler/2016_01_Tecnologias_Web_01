@@ -1,8 +1,8 @@
 <?php
    include "../cabecalho.php";
-   
-   require '../../dao/DisciplinaDAO.class.php';
-   require '../../modelo/Disciplina.class.php';
+   require "../../config.php";
+   require_once '../../dao/DisciplinaDAO.class.php';
+   require_once '../../modelo/Disciplina.class.php';
    
    $disciplina = new Disciplina();
    

@@ -29,7 +29,7 @@
         <div>
             <h1 class="centro">Alteração de Disciplinas</h1>
             <div>
-                <form action="add-ok.php" method="post">
+                <form action="upd-ok.php" method="post">
                     <label>Código:</label><input type="text" value="<?php echo $obj->codigo?>" name="txtCodigo"/><br />
                     <label>Nome:</label><input type="text" name="txtNome" value="<?php echo $obj->nome?>"/><br />
                     <label>Semestre:</label><input type="text" name="txtSemestre" value="<?php echo $obj->semestre?>"/><br />
@@ -52,6 +52,7 @@
                         <?php
                            
                         }
+                        
                         ?>
                     </select><br/>
                     <label>Professor:</label>

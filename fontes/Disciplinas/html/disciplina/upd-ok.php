@@ -12,8 +12,8 @@
     $obj->codigo = $_POST["txtCodigo"];
     $obj->nome = $_POST["txtNome"];
     $obj->semestre = $_POST["txtSemestre"];
-    $obj->codigocurso = $_POST["txtCodigoCurso"];
-    $obj->siapeprofessor = $_POST["txtSiapeProfessor"];
+    $obj->curso->codigo = $_POST["selCurso"];
+    $obj->professor->siape = $_POST["selProfessor"];
     
     $dao = new DisciplinaDAO();
 
