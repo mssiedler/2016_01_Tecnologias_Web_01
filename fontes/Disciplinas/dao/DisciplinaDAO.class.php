@@ -1,7 +1,7 @@
 <?php
-require 'Conexao.class.php';
+require_once 'Conexao.class.php';
 
-require __DIR__.'/../modelo/Disciplina.class.php';
+require_once __DIR__.'/../modelo/Disciplina.class.php';
 
 class DisciplinaDAO {
     private $pdo;
