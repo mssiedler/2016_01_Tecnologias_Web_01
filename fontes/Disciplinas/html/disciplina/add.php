@@ -25,7 +25,7 @@
                         ?>
                         <option value="<?php echo $item->codigo?>">
                             <?php echo $item->nome?></option>
-                        <?
+                        <?php
                         }
                         ?>
                     </select><br/>
@@ -37,7 +37,7 @@
                         ?>
                         <option value="<?php echo $item->siape?>">
                             <?php echo $item->nome?></option>
-                        <?
+                        <?php
                         }
                         ?>
                     </select><br />
