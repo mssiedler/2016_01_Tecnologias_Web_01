@@ -1,7 +1,7 @@
 <?php
     include "../cabecalho.php";
     
-    require '../../dao/DisciplinaDAO.class.php';
+
     
     $dao = new DisciplinaDAO();
     if(isset($_POST["txtFiltro"]))

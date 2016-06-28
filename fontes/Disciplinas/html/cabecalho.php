@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<?php
+
+include "../Carrega.class.php";
+?>
 <html>
     <head>
         <meta charset="UTF-8">
