@@ -1,5 +1,5 @@
 <?php
-require_once 'Conexao.class.php';
+
 
 class ProfessorDAO {
     private $pdo;

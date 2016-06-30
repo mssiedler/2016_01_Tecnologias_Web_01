@@ -8,19 +8,22 @@ class CursoDAO {
         $conexao = new Conexao();
         $this->pdo = $conexao->getPDO();
     }
-    
- //   public function listar()
- //   {
- //       $lista = array();
- //       $query = $this->pdo->prepare("SELECT * FROM curso");
- //       $query->execute();
- //       
- //       while ($obj = $query->fetchObject()){
- //           $lista[] = $obj;
- //       }
- //      
- //       return $lista;
- //   }
+
+    private function cadastrarProfessores($codigocurso, $professores)
+    {
+        foreach($professores as $prof)
+            {
+                $siape = $prof->siape;
+                $sql = "INSERT INTO cursoprofessor (siape,codigocurso)"
+                    . "VALUES (:siape, :codigocurso)";
+                $retorno = $this->pdo->prepare($sql);
+                $retorno->bindParam(":siape", $siape);
+                $retorno->bindParam(":codigocurso", $codigocurso);
+
+                $retorno->execute();
+            }
+        
+    }
     
     public function inserir($obj)
     {
@@ -33,11 +36,22 @@ class CursoDAO {
         $retorno = $this->pdo->prepare($sql);
         $retorno->execute($parametros);
         
-        return $retorno->rowCount();
+        if($retorno->rowCount()>0)
+        {
+            $codigocurso = $this->buscarCodigo();
+            $this->cadastrarProfessores($codigocurso, $obj->professores);
+            return  1;
+        }
+        else
+        {
+            return 0;
+        }
     }
     
     public function excluir($chavePrimaria)
     {
+        //ANTES DE EXCLUIR O CURSO .. excluir todos os registro da codigocurso que 
+        //TEM O CURSO QUE DESEJA-SE EXCLUIR
         $sql = "DELETE FROM curso WHERE codigo = :codigo";
         $retorno = $this->pdo->prepare($sql);
         $retorno->bindParam(":codigo", $chavePrimaria);
@@ -71,6 +85,7 @@ class CursoDAO {
        
         if($obj=$retorno->fetchObject())
         {
+            $obj->professores = $this->buscarProfessores($chavePrimaria);
             return $obj;
         }
         else
@@ -79,7 +94,45 @@ class CursoDAO {
         }
     }
     
-    public function listar($filtro=null,$ordenarPor=null)
+    private function buscarProfessores($chavePrimaria)
+    {
+        $sql = "select 
+	professor.nome, 
+	professor.siape 
+from 
+	cursoprofessor 
+
+inner join professor ON professor.siape=cursoprofessor.siape
+where 
+	codigocurso=:codigo";
+        
+        $retorno = $this->pdo->prepare($sql);
+        $retorno->bindParam(":codigo", $chavePrimaria);
+        $retorno->execute();
+        $profs = array();
+        while($obj=$retorno->fetchObject())
+        {
+            
+            $profs[] = $obj;
+        }
+        
+        return $profs;
+        
+        
+    }
+    
+    private function buscarCodigo()
+    {
+        
+        $sql = "select currval('curso_codigo_seq') as codigo";
+        $query = $this->pdo->prepare($sql);
+        $query->execute();
+        $obj = $query->fetchObject();
+        return $obj->codigo;
+    }
+            
+    
+    public function listar($filtro=null, $ordenarPor=null)
     {
         $parametros = array();
         $sql = "SELECT * FROM curso ";
@@ -95,6 +148,7 @@ class CursoDAO {
         
         //Percorrer meus registros, tratando-os como objeto
         while ($obj = $query->fetchObject()){
+            $obj->professores = $this->buscarProfessores($obj->codigo);
             $lista[] = $obj;
         }
         

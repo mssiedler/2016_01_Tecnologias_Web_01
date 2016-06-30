@@ -8,7 +8,19 @@
    
    $curso->nome = $_POST["txtNome"];
  
+   //var_dump($_POST["professores"]);
+   $professores = array();
+   foreach ($_POST["professores"] as $siape)
+   {
+       $prof = new Professor();
+       $prof->siape = $siape;
+       $professores[] = $prof;
+       
+   }
+   $curso->professores = $professores;
+   
    $dao = new CursoDAO();
+   
    $retorno = $dao ->inserir($curso);
    
 ?>

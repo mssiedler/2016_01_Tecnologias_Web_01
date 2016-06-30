@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
-
-include "../Carrega.class.php";
+require  "../../config.php";
+require "../../Carrega.class.php";
 ?>
 <html>
     <head>
